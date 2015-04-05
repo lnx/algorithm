@@ -5,12 +5,12 @@ import java.util.Comparator;
 
 public class LargestNumber {
 
-	String largestNumber(int[] num) {
+	String largestNumber(int[] nums) {
 		StringBuilder sb = new StringBuilder();
-		if (num.length > 0) {
-			String[] strs = new String[num.length];
-			for (int i = 0; i < num.length; ++i) {
-				strs[i] = String.valueOf(num[i]);
+		if (nums.length > 0) {
+			String[] strs = new String[nums.length];
+			for (int i = 0; i < nums.length; ++i) {
+				strs[i] = String.valueOf(nums[i]);
 			}
 			Arrays.sort(strs, new Comparator<String>() {
 				public int compare(String s1, String s2) {
@@ -22,6 +22,11 @@ public class LargestNumber {
 			}
 		}
 		return sb.toString().matches("0+") ? "0" : sb.toString();
+	}
+
+	public static void main(String[] args) {
+		int[] nums = { 100, 1 };
+		System.out.println(new LargestNumber().largestNumber(nums));
 	}
 
 }

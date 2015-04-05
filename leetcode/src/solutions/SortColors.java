@@ -5,20 +5,21 @@ public class SortColors {
 	void sortColors(int[] a) {
 		int red = -1, blue = a.length;
 		for (int i = 0; i < blue;) {
-			if (a[i] == 0) {
-				swap(a, i++, ++red);
-			} else if (a[i] == 2) {
+			if (a[i] == 2) {
 				swap(a, i, --blue);
 			} else {
+				if (a[i] == 0) {
+					swap(a, i, ++red);
+				}
 				++i;
 			}
 		}
 	}
 
 	void swap(int[] a, int i, int j) {
-		int temp = a[i];
+		int t = a[i];
 		a[i] = a[j];
-		a[j] = temp;
+		a[j] = t;
 	}
 
 	public static void main(String[] args) {

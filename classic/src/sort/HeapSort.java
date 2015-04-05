@@ -29,9 +29,9 @@ public class HeapSort {
 	}
 
 	void swap(int[] a, int i, int j) {
-		int temp = a[i];
+		int t = a[i];
 		a[i] = a[j];
-		a[j] = temp;
+		a[j] = t;
 	}
 
 	public static void main(String[] args) {

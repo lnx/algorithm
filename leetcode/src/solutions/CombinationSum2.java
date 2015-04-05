@@ -10,21 +10,23 @@ public class CombinationSum2 {
 	List<List<Integer>> combinationSum2(int[] candidates, int target) {
 		List<List<Integer>> ret = new ArrayList<>();
 		Arrays.sort(candidates);
-		combinationSum2(candidates, target, 0, new Stack<Integer>(), ret);
+		search(candidates, target, 0, new Stack<Integer>(), ret);
 		return ret;
 	}
 
-	void combinationSum2(int[] candidates, int target, int start, Stack<Integer> stack, List<List<Integer>> ret) {
+	void search(int[] candidates, int target, int k, Stack<Integer> stack, List<List<Integer>> ret) {
 		if (target == 0) {
 			ret.add(new ArrayList<>(stack));
 		} else {
-			for (int i = start; i < candidates.length; ++i) {
-				if (i == start || candidates[i] != candidates[i - 1]) {
-					if (candidates[i] <= target) {
+			for (int i = k; i < candidates.length; ++i) {
+				if (target >= candidates[i]) {
+					if (i == k || candidates[i] != candidates[i - 1]) {
 						stack.push(candidates[i]);
-						combinationSum2(candidates, target - candidates[i], i + 1, stack, ret);
+						search(candidates, target - candidates[i], i + 1, stack, ret);
 						stack.pop();
 					}
+				} else {
+					break;
 				}
 			}
 		}

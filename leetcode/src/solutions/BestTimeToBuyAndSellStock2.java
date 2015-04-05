@@ -3,13 +3,14 @@ package solutions;
 public class BestTimeToBuyAndSellStock2 {
 
 	int maxProfit(int[] prices) {
-		int ret = 0;
-		for (int i = 1; i < prices.length; ++i) {
-			if (prices[i] > prices[i - 1]) {
-				ret += prices[i] - prices[i - 1];
-			}
+		if (prices.length <= 1) {
+			return 0;
 		}
-		return ret;
+		int profit = 0;
+		for (int i = 1; i < prices.length; ++i) {
+			profit += Math.max(prices[i] - prices[i - 1], 0);
+		}
+		return profit;
 	}
 
 }

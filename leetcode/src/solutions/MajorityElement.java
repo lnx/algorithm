@@ -1,23 +1,20 @@
 package solutions;
 
-import java.util.Stack;
-
 public class MajorityElement {
 
-	int majorityElement(int[] num) {
-		Stack<Integer> stack = new Stack<>();
-		for (int i : num) {
-			if (stack.isEmpty()) {
-				stack.push(i);
+	int majorityElement(int[] nums) {
+		int pos = 0, count = 1;
+		for (int i = 1; i < nums.length; ++i) {
+			if (nums[i] == nums[pos]) {
+				++count;
 			} else {
-				if (stack.peek() == i) {
-					stack.push(i);
-				} else {
-					stack.pop();
+				if (--count == 0) {
+					pos = i;
+					count = 1;
 				}
 			}
 		}
-		return stack.peek();
+		return nums[pos];
 	}
 
 }

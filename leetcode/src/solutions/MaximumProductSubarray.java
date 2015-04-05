@@ -3,23 +3,22 @@ package solutions;
 public class MaximumProductSubarray {
 
 	int maxProduct(int[] a) {
-		int ret = a[0];
-		for (int i = 1, pos = Math.max(a[0], 0), neg = Math.min(a[0], 0); i < a.length; ++i) {
-			if (a[i] > 0) {
-				pos = Math.max(pos * a[i], a[i]);
-				neg *= a[i];
-			} else if (a[i] == 0) {
-				pos = neg = 0;
-			} else {
-				int temp = pos;
-				pos = neg * a[i];
-				neg = Math.min(temp * a[i], a[i]);
-			}
-			if (pos > ret) {
-				ret = pos;
-			}
+		if (a.length == 0) {
+			return Integer.MIN_VALUE;
 		}
-		return ret;
+		int max = a[0];
+		for (int i = 1, pos = Math.max(a[0], 0), neg = Math.min(a[0], 0); i < a.length; ++i) {
+			if (a[i] >= 0) {
+				pos = Math.max(pos * a[i], a[i]);
+				neg = Math.min(neg * a[i], a[i]);
+			} else {
+				int t = Math.max(neg * a[i], a[i]);
+				neg = Math.min(pos * a[i], a[i]);
+				pos = t;
+			}
+			max = Math.max(max, pos);
+		}
+		return max;
 	}
 
 	public static void main(String[] args) {

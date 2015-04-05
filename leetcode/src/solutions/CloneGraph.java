@@ -10,19 +10,22 @@ import struct.UndirectedGraphNode;
 public class CloneGraph {
 
 	UndirectedGraphNode cloneGraph(UndirectedGraphNode node) {
+		if (node == null) {
+			return null;
+		}
 		Map<UndirectedGraphNode, UndirectedGraphNode> map = new HashMap<>();
-		if (node != null) {
-			Queue<UndirectedGraphNode> queue = new LinkedList<>();
-			queue.offer(node);
-			map.put(node, new UndirectedGraphNode(node.label));
-			while (!queue.isEmpty()) {
-				UndirectedGraphNode cur = queue.poll();
-				for (UndirectedGraphNode nb : cur.neighbors) {
-					if (!map.containsKey(nb)) {
-						queue.offer(nb);
-						map.put(nb, new UndirectedGraphNode(nb.label));
+		Queue<UndirectedGraphNode> queue = new LinkedList<>();
+		queue.offer(node);
+		map.put(node, new UndirectedGraphNode(node.label));
+		while (!queue.isEmpty()) {
+			UndirectedGraphNode cur = queue.poll();
+			for (UndirectedGraphNode neighbor : cur.neighbors) {
+				if (neighbor != null) {
+					if (!map.containsKey(neighbor)) {
+						queue.offer(neighbor);
+						map.put(neighbor, new UndirectedGraphNode(neighbor.label));
 					}
-					map.get(cur).neighbors.add(map.get(nb));
+					map.get(cur).neighbors.add(map.get(neighbor));
 				}
 			}
 		}
