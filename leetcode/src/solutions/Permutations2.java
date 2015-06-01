@@ -43,7 +43,7 @@ public class Permutations2 {
 	}
 
 	public static void main(String[] args) {
-		int[] num = { 1, 2, 2, 3 };
+		int[] num = { 1, 1 };
 		List<List<Integer>> ret = new Permutations2().permuteUnique(num);
 		for (List<Integer> list : ret) {
 			System.out.println(list);

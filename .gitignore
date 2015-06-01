@@ -104,3 +104,4 @@ $RECYCLE.BIN/
 */bin/*
 .classpath
 .project
+.recommenders
